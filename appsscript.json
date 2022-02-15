@@ -1,0 +1,19 @@
+{
+  "timeZone": "America/Sao_Paulo",
+  "dependencies": {
+    "enabledAdvancedServices": [{
+      "userSymbol": "Drive",
+      "serviceId": "drive",
+      "version": "v2"
+    }]
+  },
+  "exceptionLogging": "STACKDRIVER",
+  "runtimeVersion": "V8",
+  "addOns": {
+    "sheets": {
+      "homepageTrigger": {
+        "runFunction": "DoVersaoAtual"
+      }
+    }
+  }
+}

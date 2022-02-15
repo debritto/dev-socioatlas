@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <!-- Adapted from: Record Viewer by Mogsdad
+    <!-- This CSS package applies Google styling; it should always be included. -->
+    <link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons.css">
+
+    <style>
+    label {
+      font-weight: bold;
+    }
+
+    .branding-below {
+      bottom: 54px;
+      top: 0;
+    }
+
+    .branding-text {
+      left: 7px;
+      position: relative;
+      top: 3px;
+    }
+
+    .logo {
+      vertical-align: middle;
+    }
+
+    .width-100 {
+      width: 100%;
+      box-sizing: border-box;
+      -webkit-box-sizing : border-box;‌
+      -moz-box-sizing : border-box;
+    }
+
+    #sidebar-value-block,
+    #dialog-elements {
+      background-color: #eee;
+      border-color: #eee;
+      border-width: 5px;
+      border-style: solid;
+    }
+
+    #sidebar-button-bar,
+    #dialog-button-bar {
+      margin-bottom: 10px;
+    }
+
+    .div-table{
+      display:table;
+      width:auto;
+    /*  background-color:#eee;
+      border:1px solid  #666666;*/
+      border-spacing:5px;
+    }
+    .div-table-row{
+      display:table-row;
+      width:auto;
+      clear:both;
+    }
+    .div-table-td, .div-table-th {
+      display:table-cell;         
+      width:200px;         
+      background-color:rgb(230, 230, 230);  
+    }
+    .div-table-th {
+      /*float:left;*/
+      font-weight: bold;
+    }
+    .div-table-td {
+      /*float:right;*/
+    }
+    </style>
+
+  </head>
+  <body>
+
+    <!-- Below is the HTML code that defines the sidebar element structure. -->
+    <div class="sidebar branding-below">
+      <p>
+      This sidebar displays all cells in a row, as a "record".
+      </p>
+      <!-- The div-table class is used to make a group of divs behave like a table. -->
+      <div class="block div-table" id="sidebar-record-block">
+      </div>
+      <div class="block" id="sidebar-button-bar">
+      </div>
+      <div id="sidebar-status"></div>
+    </div>
+
+    <!-- Enter sidebar bottom-branding below. -->
+    <div class="sidebar bottom">
+      <script>  
+        function MM_window() { 
+          google.script.run.doMultimodalTable();
+        }  
+      </script>      
+      <button id="btn" onClick="MM_window()">Analisar itens</button>
+    </div>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+      /**
+       * Run initializations on sidebar load.
+       */
+      $(function() {
+        // Assign handler functions to sidebar elements here, if needed.
+
+        // Call the server here to retrieve any information needed to build
+        // the dialog, if necessary.
+
+        // Start polling for updates        
+        poll();
+      });
+
+      /**
+       * Poll a server-side function at the given interval, to have
+       * results passed to a successHandler callback.
+       *
+       * https://stackoverflow.com/a/24773178/1677912
+       *
+       * @param {Number} interval   (optional) Time in ms between polls.
+       *                            Default is 2s (2000ms)
+       */
+      function poll(interval) {
+        interval = interval || 1000;
+        setTimeout(function() {
+          google.script.run
+            .withSuccessHandler(showRecord)
+            .withFailureHandler(
+              function(msg, element) {
+                showStatus(msg, $('#button-bar'));
+                element.disabled = false;
+              })
+            .getRecord();
+        }, interval);
+      };
+
+      /**
+       * Callback function to display a "record", or row of the spreadsheet.
+       *
+       * @param {object[]}  Array of field headings & cell values
+       */
+      function showRecord(record) {
+        if (record.length) {
+          for (var i = 0; i < record.length; i++) {
+            // build field name on the fly, formatted field-1234
+            var str = '' + i;
+            var fieldId = 'field-' + ('0000' + str).substring(str.length)
+
+            // If this field # doesn't already exist on the page, create it
+            if (!$('#'+fieldId).length) {
+              var newField = $($.parseHTML('<div id="'+fieldId+'"></div>'));
+              $('#sidebar-record-block').append(newField);
+            }
+
+            // Replace content of the field div with new record
+            $('#'+fieldId).replaceWith('<div id="'+fieldId+'" class="div-table-row"></div>');
+            $('#'+fieldId).append($('<div class="div-table-th">' + record[i].heading + '</div>'))
+                          .append('<div class="div-table-td">' + record[i].cellval + '</div>');
+          }
+        }
+
+        // TODO: hide any existing fields that are beyond the current record length
+
+        //Setup the next poll
+        poll();
+      }
+
+      /**
+       * Displays the given status message in the sidebar.
+       *
+       * @param {String} msg The status message to display.
+       * @param {String} classId The message type (class id) that the message
+       *   should be displayed as.
+       */
+      function showStatus(msg, classId) {
+        $('#sidebar-status').removeClass().html(msg);
+        if (classId) {
+          $('#sidebar-status').addClass(classId);
+        }
+      }
+    </script>
+
+  </body>
+</html>
