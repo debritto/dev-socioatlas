@@ -181,7 +181,7 @@ function ExtrairComentarios() {
         cList.unshift([ text ]);  // add image note
         vAuthor.unshift([file.ownerNames]);
         vDate.unshift([ file.imageMediaMetadata.date ]);
-        vIDcomment.unshift(["N/A"]);
+        vIDcomment.unshift([docId]);
         vBibliografia.unshift(["Imagem"]);
         vReferencia.unshift(["IMG"]);
         vBib.unshift([""]);
