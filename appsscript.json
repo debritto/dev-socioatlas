@@ -12,6 +12,14 @@
   "exceptionLogging": "STACKDRIVER",
   "runtimeVersion": "V8",
   "addOns": {
+    "common": {
+      "name": "SocioAtlas",
+      "logoUrl": "https://github.com/debritto/socioatlas/blob/master/themes/docsy/static/favicons/android-36x36.png",
+      "layoutProperties": {
+        "primaryColor": "#4285F4",
+        "secondaryColor": "#FFFFFF"
+      }
+    },
     "sheets": {
       "homepageTrigger": {
         "runFunction": "DoVersaoAtual"
@@ -20,9 +28,10 @@
   },
   "oauthScopes": [
   "https://www.googleapis.com/auth/script.container.ui",
-  "https://www.googleapis.com/auth/documents.readonly",
   "https://www.googleapis.com/auth/drive.readonly",
   "https://www.googleapis.com/auth/spreadsheets.currentonly"
   ]
-}
+} 
 
+
+ 
