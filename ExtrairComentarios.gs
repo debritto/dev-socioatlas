@@ -564,26 +564,11 @@ function keepUnique(){
 
   // Cria validação de dados para coluna ASPECTO
   //Source: https://stackoverflow.com/questions/58746916/google-sheets-data-validation-drop-down-menu-show-values-but-paste-formula
-
-  var option = new Array();
-  option[0]="160-Ético";
-  option[1]="150-Estético";
-  option[2]="140-Jurídico";
-  option[3]="130-Operacional/Técnico";
-  option[4]="120-Econômico";
-  option[5]="110-Social/Relacional";
-  option[6]="100-Conhecimento";
-  option[7]="090-Linguístico/Informacional";
-  option[8]="080-Histórico/Cultural";
-  option[9]="070-Fiducial (fé/convicção)";
-  option[10]="060-Sensitivo (psiquico)";
-  option[11]="050-Biótico";
-  option[12]="040-Físico";
-  option[13]="030-Cinemático (movimento)";
-  option[14]="020-Espacial";
-  option[15]="010-Numérico";
-  option[16]="000-INDEFINIDO"
-
+  var sh = SpreadsheetApp.getActiveSpreadsheet();   
+  var ss = sh.getSheetByName('Aspectos');
+  var aspects_table = ss.getDataRange().getValues();// get all data from Dados
+  var aspects_list = SUPERSQL("Select Aspecto From ?",aspects_table);
+  aspects_list.shift() // header remove
 
   // -----------------------------------------------------    Cria matriz com tabela Dados (apenas coluna Fatores)
   var sh = SpreadsheetApp.getActiveSpreadsheet();   
@@ -698,7 +683,7 @@ function keepUnique(){
 
   var aspectos = ss3.getRange("C2:C" + fatores_substituicao.length);
   var rule = SpreadsheetApp.newDataValidation()
-             .requireValueInList(option)
+             .requireValueInList(aspects_list)
              .setAllowInvalid(false)
              .build();
   aspectos.setDataValidation(rule);
