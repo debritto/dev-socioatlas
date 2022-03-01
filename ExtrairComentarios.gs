@@ -171,8 +171,8 @@ function ExtrairComentarios() {
 
       Logger.log(file.title);
 
-      //var regex = /\#(\w+) /g; 
-      var regex = /\#(\S+) /g;
+      //var regex = /\#(\w+) /g; // w = Any word character
+      var regex = /\#(\S+) /g;   // S = Any non-white space character
     
       var AllFactors;
       while ( AllFactors = regex.exec(file.title) ) {
