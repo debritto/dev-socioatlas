@@ -20,29 +20,45 @@ function onInstall(e) {
 function onOpen() {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   var menuEntries = [];
-  // When the user clicks on "addMenuExample" then "Menu Entry 1", the function function1 is
-  // executed.
-  menuEntries.push({name: "📥 Importar fontes", functionName: "ExtrairComentarios"});
-  menuEntries.push(null); // line separator
-  menuEntries.push({name: "🔖 Relação de fatores", functionName: "doFactors"});
-  menuEntries.push({name: "📑 Análise simples", functionName: "doTable"});
-  menuEntries.push({name: "🌎 Georreferenciamento", functionName: "doMap"});
-  menuEntries.push(null); // line separator
-  menuEntries.push({name: "🔄 Gera matriz multimodal", functionName: "GeraMatrizMM"});
-  menuEntries.push({name: "🔁 Análise multimodal", functionName: "doMultimodal"});
-  menuEntries.push({name: "Gráfico multimodal", functionName: "doGet"});
-  menuEntries.push(null); // line separator
-  menuEntries.push({name: "💡 Tutorial", functionName: "openTutorial"});
-  menuEntries.push(null); // line separator
-  menuEntries.push({name: "Versão atual", functionName: "DoVersaoAtual"});
 
-
- 
+  switch(Session.getActiveUserLocale())
+  {
+  case "en":
+    menuEntries.push({name: "📥 Import fonts", functionName: "ExtrairComentarios"});
+    menuEntries.push(null); // line separator
+    menuEntries.push({name: "Factors list", functionName: "doFactors"});
+    menuEntries.push({name: "Simple analysis", functionName: "doTable"});
+    menuEntries.push({name: "🌎 Georeferencing", functionName: "doMap"});
+    menuEntries.push(null); // line separator
+    menuEntries.push({name: "🔄 Create Multimodal matrix", functionName: "GeraMatrizMM"});
+    menuEntries.push({name: "Multimodal analysis", functionName: "doMultimodal"});
+    menuEntries.push({name: "Multimodal chart", functionName: "doGet"});
+    menuEntries.push(null); // line separator
+    menuEntries.push({name: "Tutorial", functionName: "openTutorial"});
+    menuEntries.push(null); // line separator
+    menuEntries.push({name: "Version", functionName: "DoVersaoAtual"});
+    break;
+  default:
+    menuEntries.push({name: "📥 Importar fontes", functionName: "ExtrairComentarios"});
+    menuEntries.push(null); // line separator
+    menuEntries.push({name: "Relação de fatores", functionName: "doFactors"});
+    menuEntries.push({name: "Análise simples", functionName: "doTable"});
+    menuEntries.push({name: "🌎 Georreferenciamento", functionName: "doMap"});
+    menuEntries.push(null); // line separator
+    menuEntries.push({name: "🔄 Gera matriz multimodal", functionName: "GeraMatrizMM"});
+    menuEntries.push({name: "Análise multimodal", functionName: "doMultimodal"});
+    menuEntries.push({name: "Gráfico multimodal", functionName: "doGet"});
+    menuEntries.push(null); // line separator
+    menuEntries.push({name: "Tutorial", functionName: "openTutorial"});
+    menuEntries.push(null); // line separator
+    menuEntries.push({name: "Versão atual", functionName: "DoVersaoAtual"});
+    break;
+  }
   ss.addMenu("SocioAtlas", menuEntries);
 }
 
 function DoVersaoAtual(){
-  var versaoAtual = "0.0beta7";
+  var versaoAtual = "0.0 beta9";
   
   var ui = SpreadsheetApp.getUi();
   ui.alert('Versão Atual: ' + versaoAtual + ' | Verifique se há uma versão nova em 👉️ www.socioatlas.xyz');

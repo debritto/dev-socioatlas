@@ -169,11 +169,17 @@ function ExtrairComentarios() {
         }
       }    
 
+      Logger.log(file.title);
 
-      var regex = /\#(\w+) /g;
+      //var regex = /\#(\w+) /g; 
+      var regex = /\#(\S+) /g;
+    
       var AllFactors;
       while ( AllFactors = regex.exec(file.title) ) {
         var FactorAux = AllFactors[1];
+
+        Logger.log(FactorAux);
+
         vFactor.unshift([FactorAux.toLocaleUpperCase().trim()]);
         var imgThumbnail = '=IMAGE("https://drive.google.com/uc?export=view&id=' + docId + '")';
 
