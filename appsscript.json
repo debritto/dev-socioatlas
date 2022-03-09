@@ -27,11 +27,8 @@
     }
   },
   "oauthScopes": [
-  "https://www.googleapis.com/auth/script.container.ui",
-  "https://www.googleapis.com/auth/drive.readonly",
-  "https://www.googleapis.com/auth/spreadsheets.currentonly"
+    "https://www.googleapis.com/auth/script.container.ui",
+    "https://www.googleapis.com/auth/drive.readonly",
+    "https://www.googleapis.com/auth/spreadsheets.currentonly"
   ]
-} 
-
-
- 
+}

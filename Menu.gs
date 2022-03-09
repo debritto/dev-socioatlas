@@ -18,9 +18,28 @@ function onInstall(e) {
 
 // The onOpen function is executed automatically every time a Spreadsheet is loaded
 function onOpen() {
+
+  /*
+  var menu = SpreadsheetApp.getUi().createAddonMenu(); // Or DocumentApp.
+  if (e && e.authMode == ScriptApp.AuthMode.NONE) {
+    // Add a normal menu item (works in all authorization modes).
+    menu.addItem('Start workflow', 'startWorkflow');
+  } else {
+    // Add a menu item based on properties (doesn't work in AuthMode.NONE).
+    var properties = PropertiesService.getDocumentProperties();
+    var workflowStarted = properties.getProperty('workflowStarted');
+    if (workflowStarted) {
+      menu.addItem('Check workflow status', 'checkWorkflow');
+    } else {
+      menu.addItem('Start workflow', 'startWorkflow');
+    }
+  }
+  menu.addToUi();
+
+  */
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   var menuEntries = [];
-
+  /*
   switch(Session.getActiveUserLocale())
   {
   case "en":
@@ -39,6 +58,7 @@ function onOpen() {
     menuEntries.push({name: "Version", functionName: "DoVersaoAtual"});
     break;
   default:
+  */
     menuEntries.push({name: "📥 Importar fontes", functionName: "ExtrairComentarios"});
     menuEntries.push(null); // line separator
     menuEntries.push({name: "Relação de fatores", functionName: "doFactors"});
@@ -52,9 +72,36 @@ function onOpen() {
     menuEntries.push({name: "Tutorial", functionName: "openTutorial"});
     menuEntries.push(null); // line separator
     menuEntries.push({name: "Versão atual", functionName: "DoVersaoAtual"});
+    menuEntries.push({name: "Start!", functionName: "DoStart"});
+
+    /*
     break;
   }
+  */
   ss.addMenu("SocioAtlas", menuEntries);
+}
+
+
+function DoStart(){
+  // Verify spreadsheet structure, and create one if nedded
+  // Adapted from: https://stackoverflow.com/questions/58090521/in-google-sheets-apps-script-how-to-check-if-a-sheet-exists-and-if-it-doesnt
+
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+
+  if( ss.getSheetByName("Fontess") == null) {
+    //if returned null means the sheet doesn't exist, so create it
+  
+    /*  
+    var val = Utilities.formatDate(new Date(A2), "GMT+1", "MM/dd/yyyy");
+    ss.insertSheet(val, ss.getSheets().length, {template: templateSheet});
+    sheet2 = ss.insertSheet(A2);
+    */
+    newSheet = ss.insertSheet("Fontess");
+    Logger.log('Criei');
+  }
+
+
+
 }
 
 function DoVersaoAtual(){
