@@ -126,7 +126,7 @@ edge[color=black];`;
   //openUrl(ChartImageURL);
   
   //Logger.log(ChartImageURL);
-  
+ 
   return script;
 }
 

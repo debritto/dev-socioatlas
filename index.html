@@ -18,6 +18,9 @@
       var viz = new Viz();
 
       function onSuccess(graph) {
+          
+        console.log(graph);
+
         viz.renderSVGElement( graph )
         .then(function(element) {
           document.body.appendChild(element);
