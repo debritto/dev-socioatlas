@@ -5,6 +5,10 @@ function ExtrairComentarios() {
   setScriptIsRunning(true); // Marca variável que diz que este script está rodando - com isso evita que triggers sejam disparados.
 // veja aqui: https://stackoverflow.com/questions/18749591/encode-html-entities-in-javascript/39243641#39243641
 // Parece que funciona melhor que esta opção
+
+  // Verify if spreadsheet has all necessary tabs, otherwise create it.
+  DoStart();
+
   // Function to decode and encode html entities
   var decodeHtmlEntity = function(str) {
     return str.replace(/&#(\d+);/g, function(match, dec) {
