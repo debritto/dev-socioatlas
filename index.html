@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css">
+    <!-- The CSS package above applies Google styling to buttons and other elements. -->    
+  </head>
+  <body>
+    <!-- Zoom library link: https://github.com/luncheon/svg-pan-zoom-container -->
+    <script src="https://cdn.jsdelivr.net/npm/svg-pan-zoom-container@0.5.1"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/viz.js/2.1.2/viz.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/viz.js/2.1.2/full.render.js"></script>
+    <!--
+    <?!= include('viz'); ?>
+    <?!= include('viz_full_render'); ?>
+    -->
+    <script>
+      var viz = new Viz();
+
+      function onSuccess(graph) {
+          
+        console.log(graph);
+
+        viz.renderSVGElement( graph )
+        .then(function(element) {
+          document.body.appendChild(element);
+          document.getElementById("myDIV").appendChild(element);
+        });
+      }
+      
+      google.script.run.withSuccessHandler(onSuccess).myGraphViz();
+    </script>
+
+    <div id="myDIV" data-zoom-on-wheel data-pan-on-drag style="height: 90vh;">
+
+    </div>
+
+  </body>
+</html>
