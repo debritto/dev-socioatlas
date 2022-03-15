@@ -17,10 +17,9 @@ function onInstall(e) {
 // Based on code at: https://developers.google.com/apps-script/reference/spreadsheet/spreadsheet#addMenu(String,Object)
 // Check this code too: https://developers.google.com/apps-script/guides/menus
 // The onOpen function is executed automatically every time a Spreadsheet is loaded
-function onOpen() {
+function onOpen(e) {
 
-  var ui = SpreadsheetApp.getUi();
-  ui.createMenu('SocioAtlas')
+  SpreadsheetApp.getUi().createAddonMenu()
     .addItem('📥 Importar fontes', 'ExtrairComentarios')
     .addSeparator()
     .addItem('Relação de fatores', 'doFactors')
@@ -35,8 +34,6 @@ function onOpen() {
     .addSeparator()
     .addItem('Versão atual', 'DoVersaoAtual')
     .addItem('Start!', 'DoStart')
-    //.addSubMenu(ui.createMenu('Sub-menu')
-    //    .addItem('Second item', 'menuItem2'))
     .addToUi();
 
   /*
