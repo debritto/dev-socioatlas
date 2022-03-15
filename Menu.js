@@ -3,7 +3,6 @@
  * ver: https://developers.google.com/apps-script/guides/services/authorization
  */
 
-// [START apps_script_triggers_oninstall]
 /**
  * The event handler triggered when installing the add-on.
  * @param {Event} e The onInstall event.
@@ -11,11 +10,7 @@
 function onInstall(e) {
   onOpen(e);
 }
-// [END apps_script_triggers_oninstall]
 
-
-// Based on code at: https://developers.google.com/apps-script/reference/spreadsheet/spreadsheet#addMenu(String,Object)
-// Check this code too: https://developers.google.com/apps-script/guides/menus
 // The onOpen function is executed automatically every time a Spreadsheet is loaded
 function onOpen(e) {
   console.info(e);
@@ -35,47 +30,6 @@ function onOpen(e) {
     .addItem('Versão atual', 'DoVersaoAtual')
     .addItem('Start!', 'DoStart')
     .addToUi();
-
-  /*
-  var ss = SpreadsheetApp.getActiveSpreadsheet();
-  var menuEntries = [];
-  switch(Session.getActiveUserLocale())
-  {
-  case "en":
-    menuEntries.push({name: "📥 Import fonts", functionName: "ExtrairComentarios"});
-    menuEntries.push(null); // line separator
-    menuEntries.push({name: "Factors list", functionName: "doFactors"});
-    menuEntries.push({name: "Simple analysis", functionName: "doTable"});
-    menuEntries.push({name: "🌎 Georeferencing", functionName: "doMap"});
-    menuEntries.push(null); // line separator
-    menuEntries.push({name: "🔄 Create Multimodal matrix", functionName: "GeraMatrizMM"});
-    menuEntries.push({name: "Multimodal analysis", functionName: "doMultimodal"});
-    menuEntries.push({name: "Multimodal chart", functionName: "doGet"});
-    menuEntries.push(null); // line separator
-    menuEntries.push({name: "Tutorial", functionName: "openTutorial"});
-    menuEntries.push(null); // line separator
-    menuEntries.push({name: "Version", functionName: "DoVersaoAtual"});
-    break;
-  default:
-    menuEntries.push({name: "📥 Importar fontes", functionName: "ExtrairComentarios"});
-    menuEntries.push(null); // line separator
-    menuEntries.push({name: "Relação de fatores", functionName: "doFactors"});
-    menuEntries.push({name: "Análise simples", functionName: "doTable"});
-    menuEntries.push({name: "🌎 Georreferenciamento", functionName: "doMap"});
-    menuEntries.push(null); // line separator
-    menuEntries.push({name: "🔄 Gera matriz multimodal", functionName: "GeraMatrizMM"});
-    menuEntries.push({name: "Análise multimodal", functionName: "doMultimodal"});
-    menuEntries.push({name: "Gráfico multimodal", functionName: "doGet"});
-    menuEntries.push(null); // line separator
-    menuEntries.push({name: "Tutorial", functionName: "openTutorial"});
-    menuEntries.push(null); // line separator
-    menuEntries.push({name: "Versão atual", functionName: "DoVersaoAtual"});
-    menuEntries.push({name: "Start!", functionName: "DoStart"});
-
-    break;
-  }
-  ss.addMenu("SocioAtlas", menuEntries);
-  */
 }
 
 function DoStart(){
