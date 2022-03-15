@@ -18,7 +18,7 @@ function onInstall(e) {
 // Check this code too: https://developers.google.com/apps-script/guides/menus
 // The onOpen function is executed automatically every time a Spreadsheet is loaded
 function onOpen(e) {
-
+  console.info(e);
   SpreadsheetApp.getUi().createAddonMenu()
     .addItem('📥 Importar fontes', 'ExtrairComentarios')
     .addSeparator()
