@@ -15,13 +15,13 @@ function onInstall(e) {
 function onOpen(e) {
   console.info(e);
   SpreadsheetApp.getUi().createAddonMenu()
-    .addItem('📥 Importar fontes', 'ExtrairComentarios')
+    .addItem('Importar fontes', 'ExtrairComentarios')
     .addSeparator()
     .addItem('Relação de fatores', 'doFactors')
     .addItem('Análise simples', 'doTable')
-    .addItem('🌎 Georreferenciamento', 'doMap')
+    .addItem('Georreferenciamento', 'doMap')
     .addSeparator()
-    .addItem('🔄 Gera matriz multimodal', 'GeraMatrizMM')
+    .addItem('Gera matriz multimodal', 'GeraMatrizMM')
     .addItem('Análise multimodal', 'doMultimodal')
     .addItem('Gráfico multimodal', 'doGet')
     .addSeparator()
